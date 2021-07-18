@@ -1,3 +1,5 @@
+import qdarkstyle
+import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
@@ -145,10 +147,14 @@ class MainDialog(object):
         self.outputPathLabel.setText(_translate("Form", "Output Path"))
 
 
-if __name__ == "__main__":
-    import sys
+def style_sheet(__app):
+    dark_stylesheet = qdarkstyle.load_stylesheet_pyqt5()
+    __app.setStyleSheet(dark_stylesheet)
 
+
+if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
+    style_sheet(app)
     Form = QtWidgets.QWidget()
     dialog = MainDialog()
     dialog.setup_ui(Form)
