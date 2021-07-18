@@ -13,18 +13,18 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
+  <layout class="QVBoxLayout" name="globalLayout">
    <item>
-    <widget class="QFrame" name="frame">
+    <widget class="QFrame" name="settingsFrame">
      <property name="frameShape">
       <enum>QFrame::StyledPanel</enum>
      </property>
      <property name="frameShadow">
       <enum>QFrame::Raised</enum>
      </property>
-     <layout class="QVBoxLayout" name="verticalLayout_2">
+     <layout class="QVBoxLayout" name="settingsFrameLayout">
       <item>
-       <widget class="QLabel" name="settings_label">
+       <widget class="QLabel" name="settingsLabel">
         <property name="font">
          <font>
           <pointsize>14</pointsize>
@@ -38,7 +38,7 @@
        </widget>
       </item>
       <item>
-       <layout class="QFormLayout" name="settings_layout">
+       <layout class="QFormLayout" name="settingsFormLayout">
         <item row="0" column="0">
          <widget class="QLabel" name="layoutLabel">
           <property name="text">
@@ -97,14 +97,14 @@
          <widget class="QFrame" name="layoutFrame">
           <layout class="QHBoxLayout" name="horizontalLayout">
            <item>
-            <widget class="QCheckBox" name="barcode_cb">
+            <widget class="QCheckBox" name="barcodeCheckbox">
              <property name="text">
               <string>Print Barcode</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QCheckBox" name="name_cb">
+            <widget class="QCheckBox" name="nameCheckbox">
              <property name="text">
               <string>Print Name</string>
              </property>
@@ -119,16 +119,16 @@
     </widget>
    </item>
    <item>
-    <widget class="QFrame" name="frame_2">
+    <widget class="QFrame" name="ioFrame">
      <property name="frameShape">
       <enum>QFrame::StyledPanel</enum>
      </property>
      <property name="frameShadow">
       <enum>QFrame::Raised</enum>
      </property>
-     <layout class="QVBoxLayout" name="verticalLayout_3">
+     <layout class="QVBoxLayout" name="ioFrameLayout">
       <item>
-       <widget class="QLabel" name="io_label">
+       <widget class="QLabel" name="ioLabel">
         <property name="font">
          <font>
           <pointsize>14</pointsize>
@@ -142,7 +142,7 @@
        </widget>
       </item>
       <item>
-       <layout class="QFormLayout" name="io_layout">
+       <layout class="QFormLayout" name="ioFormLayout">
         <item row="0" column="0">
          <widget class="QLabel" name="inputFileLabel">
           <property name="text">
@@ -154,10 +154,14 @@
          <widget class="QFrame" name="inputFileFrame">
           <layout class="QHBoxLayout" name="horizontalLayout_2">
            <item>
-            <widget class="QLineEdit" name="input_path_edit"/>
+            <widget class="QLineEdit" name="inputPathEdit">
+             <property name="enabled">
+              <bool>true</bool>
+             </property>
+            </widget>
            </item>
            <item>
-            <widget class="QToolButton" name="input_btn">
+            <widget class="QToolButton" name="inputPathButton">
              <property name="text">
               <string/>
              </property>
@@ -177,10 +181,10 @@
          <widget class="QFrame" name="outputPathFrame">
           <layout class="QHBoxLayout" name="horizontalLayout_3">
            <item>
-            <widget class="QLineEdit" name="output_path_edit"/>
+            <widget class="QLineEdit" name="outputPathEdit"/>
            </item>
            <item>
-            <widget class="QToolButton" name="output_btn"/>
+            <widget class="QToolButton" name="outputPathButton"/>
            </item>
           </layout>
          </widget>
@@ -191,16 +195,16 @@
     </widget>
    </item>
    <item>
-    <widget class="QFrame" name="frame_3">
+    <widget class="QFrame" name="tableFrame">
      <property name="frameShape">
       <enum>QFrame::StyledPanel</enum>
      </property>
      <property name="frameShadow">
       <enum>QFrame::Raised</enum>
      </property>
-     <layout class="QVBoxLayout" name="verticalLayout_4">
+     <layout class="QVBoxLayout" name="tableFrameLayout">
       <item>
-       <widget class="QTableView" name="tableView">
+       <widget class="QTableView" name="table">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>1</horstretch>

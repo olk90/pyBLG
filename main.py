@@ -1,73 +1,77 @@
 import qdarkstyle
 import sys
-from PyQt5 import QtCore, QtGui, QtWidgets
+from PySide2.QtCore import *
+from PySide2.QtGui import *
+from PySide2.QtWidgets import *
 
 
-class MainDialog(object):
+class MainDialog(QWidget):
 
     def __init__(self):
+        super().__init__()
+
         # settings pane
-        self.settingsFrame = QtWidgets.QFrame(Form)
-        self.labelContentFrame = QtWidgets.QFrame(self.settingsFrame)
-        self.formatComboBox = QtWidgets.QComboBox(self.settingsFrame)
-        self.formatLabel = QtWidgets.QLabel(self.settingsFrame)
-        self.outputTypeComboBox = QtWidgets.QComboBox(self.settingsFrame)
-        self.outputTypeLabel = QtWidgets.QLabel(self.settingsFrame)
-        self.layoutLabel = QtWidgets.QLabel(self.settingsFrame)
+        self.settingsFrame = QFrame(Form)
+        self.labelContentFrame = QFrame(self.settingsFrame)
+        self.formatComboBox = QComboBox(self.settingsFrame)
+        self.formatLabel = QLabel(self.settingsFrame)
+        self.outputTypeComboBox = QComboBox(self.settingsFrame)
+        self.outputTypeLabel = QLabel(self.settingsFrame)
+        self.layoutLabel = QLabel(self.settingsFrame)
 
-        self.settingsFrameLayout = QtWidgets.QVBoxLayout(self.settingsFrame)
-        self.settingsFormLayout = QtWidgets.QFormLayout()
+        self.settingsFrameLayout = QVBoxLayout(self.settingsFrame)
+        self.settingsFormLayout = QFormLayout()
 
-        self.settingsLabel = QtWidgets.QLabel(self.settingsFrame)
-        self.verticalLayout = QtWidgets.QVBoxLayout(Form)
-        self.nameCheckBox = QtWidgets.QCheckBox(self.labelContentFrame)
-        self.barcodeCheckbox = QtWidgets.QCheckBox(self.labelContentFrame)
-        self.settingsCheckboxLayout = QtWidgets.QHBoxLayout(self.labelContentFrame)
+        self.settingsLabel = QLabel(self.settingsFrame)
+        self.verticalLayout = QVBoxLayout(Form)
+        self.nameCheckBox = QCheckBox(self.labelContentFrame)
+        self.barcodeCheckbox = QCheckBox(self.labelContentFrame)
+        self.settingsCheckboxLayout = QHBoxLayout(self.labelContentFrame)
 
         # input/output pane
-        self.ioFrame = QtWidgets.QFrame(Form)
+        self.ioFrame = QFrame(Form)
 
-        self.inputFileFrame = QtWidgets.QFrame(self.ioFrame)
-        self.inputLayout = QtWidgets.QHBoxLayout(self.inputFileFrame)
-        self.inputPathEdit = QtWidgets.QLineEdit(self.inputFileFrame)
-        self.inputButton = QtWidgets.QToolButton(self.inputFileFrame)
-        self.inputFileLabel = QtWidgets.QLabel(self.ioFrame)
+        self.inputFileFrame = QFrame(self.ioFrame)
+        self.inputLayout = QHBoxLayout(self.inputFileFrame)
+        self.inputPathEdit = QLineEdit(self.inputFileFrame)
+        self.inputButton = QToolButton(self.inputFileFrame)
+        self.inputFileLabel = QLabel(self.ioFrame)
 
-        self.outputPathFrame = QtWidgets.QFrame(self.ioFrame)
-        self.outputPathLabel = QtWidgets.QLabel(self.ioFrame)
-        self.outputButton = QtWidgets.QToolButton(self.outputPathFrame)
-        self.outputPathEdit = QtWidgets.QLineEdit(self.outputPathFrame)
-        self.outputLayout = QtWidgets.QHBoxLayout(self.outputPathFrame)
-        self.ioFormLayout = QtWidgets.QFormLayout()
-        self.ioLabel = QtWidgets.QLabel(self.ioFrame)
-        self.ioFrameLayout = QtWidgets.QVBoxLayout(self.ioFrame)
+        self.outputPathFrame = QFrame(self.ioFrame)
+        self.outputPathLabel = QLabel(self.ioFrame)
+        self.outputButton = QToolButton(self.outputPathFrame)
+        self.outputPathEdit = QLineEdit(self.outputPathFrame)
+        self.outputLayout = QHBoxLayout(self.outputPathFrame)
+        self.ioFormLayout = QFormLayout()
+        self.ioLabel = QLabel(self.ioFrame)
+        self.ioFrameLayout = QVBoxLayout(self.ioFrame)
 
         # table pane
-        self.tableFrame = QtWidgets.QFrame(Form)
-        self.table_frame_layout = QtWidgets.QVBoxLayout(self.tableFrame)
-        self.tableView = QtWidgets.QTableView(self.tableFrame)
-        self.buttonBox = QtWidgets.QDialogButtonBox(self.tableFrame)
+        self.tableFrame = QFrame(Form)
+        self.table_frame_layout = QVBoxLayout(self.tableFrame)
+        self.table = QTableView(self.tableFrame)
+        self.buttonBox = QDialogButtonBox(self.tableFrame)
 
     def setup_ui(self, form):
         form.setObjectName("Form")
         form.resize(451, 714)
 
-        font = QtGui.QFont()
+        font = QFont()
         font.setPointSize(14)
         font.setBold(True)
         font.setWeight(75)
 
         self.configure_settings(font)
         self.configure_io(font)
-        self.configure_table(font)
+        self.configure_table()
 
         self.translate_ui(form)
-        QtCore.QMetaObject.connectSlotsByName(form)
+        QMetaObject.connectSlotsByName(form)
 
     @staticmethod
     def configure_frame(frame):
-        frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        frame.setFrameShadow(QtWidgets.QFrame.Raised)
+        frame.setFrameShape(QFrame.StyledPanel)
+        frame.setFrameShadow(QFrame.Raised)
 
     def configure_settings(self, font):
         self.configure_frame(self.settingsFrame)
@@ -78,12 +82,12 @@ class MainDialog(object):
 
         self.settingsLabel.setFont(font)
         self.settingsFrameLayout.addWidget(self.settingsLabel)
-        self.settingsFormLayout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.layoutLabel)
-        self.settingsFormLayout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.labelContentFrame)
-        self.settingsFormLayout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.outputTypeLabel)
-        self.settingsFormLayout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.outputTypeComboBox)
-        self.settingsFormLayout.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.formatLabel)
-        self.settingsFormLayout.setWidget(2, QtWidgets.QFormLayout.FieldRole, self.formatComboBox)
+        self.settingsFormLayout.setWidget(0, QFormLayout.LabelRole, self.layoutLabel)
+        self.settingsFormLayout.setWidget(0, QFormLayout.FieldRole, self.labelContentFrame)
+        self.settingsFormLayout.setWidget(1, QFormLayout.LabelRole, self.outputTypeLabel)
+        self.settingsFormLayout.setWidget(1, QFormLayout.FieldRole, self.outputTypeComboBox)
+        self.settingsFormLayout.setWidget(2, QFormLayout.LabelRole, self.formatLabel)
+        self.settingsFormLayout.setWidget(2, QFormLayout.FieldRole, self.formatComboBox)
         self.settingsCheckboxLayout.addWidget(self.barcodeCheckbox)
         self.settingsCheckboxLayout.addWidget(self.nameCheckBox)
         self.settingsFrameLayout.addLayout(self.settingsFormLayout)
@@ -94,33 +98,34 @@ class MainDialog(object):
 
         self.ioLabel.setFont(font)
         self.ioFrameLayout.addWidget(self.ioLabel)
-        self.ioFormLayout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.inputFileLabel)
+        self.ioFormLayout.setWidget(0, QFormLayout.LabelRole, self.inputFileLabel)
         self.inputLayout.addWidget(self.inputPathEdit)
         self.inputButton.setText("")
         self.inputLayout.addWidget(self.inputButton)
 
-        self.ioFormLayout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.inputFileFrame)
-        self.ioFormLayout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.outputPathLabel)
+        self.ioFormLayout.setWidget(0, QFormLayout.FieldRole, self.inputFileFrame)
+        self.ioFormLayout.setWidget(1, QFormLayout.LabelRole, self.outputPathLabel)
 
         self.outputLayout.addWidget(self.outputPathEdit)
         self.outputLayout.addWidget(self.outputButton)
 
-        self.ioFormLayout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.outputPathFrame)
+        self.ioFormLayout.setWidget(1, QFormLayout.FieldRole, self.outputPathFrame)
         self.ioFrameLayout.addLayout(self.ioFormLayout)
 
-    def configure_table(self, font):
+    def configure_table(self):
         self.configure_frame(self.tableFrame)
         self.verticalLayout.addWidget(self.tableFrame)
 
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(1)
         sizePolicy.setVerticalStretch(1)
-        sizePolicy.setHeightForWidth(self.tableView.sizePolicy().hasHeightForWidth())
-        self.tableView.setSizePolicy(sizePolicy)
-        ## self.tableView.setContextMenuPolicy(QtCore.Qt.DefaultContextMenu)
-        self.tableView.setAlternatingRowColors(True)
-        self.table_frame_layout.addWidget(self.tableView)
-        self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Ok | QtWidgets.QDialogButtonBox.Reset)
+        sizePolicy.setHeightForWidth(self.table.sizePolicy().hasHeightForWidth())
+        self.table.setSizePolicy(sizePolicy)
+        self.table.setContextMenuPolicy(Qt.DefaultContextMenu)
+        self.table.setAlternatingRowColors(True)
+
+        self.table_frame_layout.addWidget(self.table)
+        self.buttonBox.setStandardButtons(QDialogButtonBox.Ok | QDialogButtonBox.Reset)
         self.buttonBox.setCenterButtons(False)
         self.table_frame_layout.addWidget(self.buttonBox)
 
@@ -134,17 +139,20 @@ class MainDialog(object):
         self.outputTypeComboBox.addItem("*.docx")
 
     def translate_ui(self, form):
-        _translate = QtCore.QCoreApplication.translate
-        form.setWindowTitle(_translate("Form", "Form"))
-        self.settingsLabel.setText(_translate("Form", "Settings"))
-        self.layoutLabel.setText(_translate("Form", "Layout"))
-        self.outputTypeLabel.setText(_translate("Form", "Output Type"))
-        self.formatLabel.setText(_translate("Form", "Format"))
-        self.barcodeCheckbox.setText(_translate("Form", "Print Barcode"))
-        self.nameCheckBox.setText(_translate("Form", "Print Name"))
-        self.ioLabel.setText(_translate("Form", "Input/Output"))
-        self.inputFileLabel.setText(_translate("Form", "Input File"))
-        self.outputPathLabel.setText(_translate("Form", "Output Path"))
+        form.setWindowTitle(translate("Form", "Form"))
+        self.settingsLabel.setText(translate("Form", "Settings"))
+        self.layoutLabel.setText(translate("Form", "Layout"))
+        self.outputTypeLabel.setText(translate("Form", "Output Type"))
+        self.formatLabel.setText(translate("Form", "Format"))
+        self.barcodeCheckbox.setText(translate("Form", "Print Barcode"))
+        self.nameCheckBox.setText(translate("Form", "Print Name"))
+        self.ioLabel.setText(translate("Form", "Input/Output"))
+        self.inputFileLabel.setText(translate("Form", "Input File"))
+        self.outputPathLabel.setText(translate("Form", "Output Path"))
+
+
+def translate(context, text):
+    return QCoreApplication.translate(context, text, None)
 
 
 def style_sheet(__app):
@@ -153,10 +161,10 @@ def style_sheet(__app):
 
 
 if __name__ == "__main__":
-    app = QtWidgets.QApplication(sys.argv)
+    app = QApplication(sys.argv)
     style_sheet(app)
-    Form = QtWidgets.QWidget()
+    Form = QWidget()
     dialog = MainDialog()
     dialog.setup_ui(Form)
     Form.show()
-    sys.exit(app.exec())
+    sys.exit(app.exec_())
