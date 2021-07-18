@@ -156,14 +156,14 @@ def translate(context, text):
 
 
 def style_sheet(__app):
-    dark_stylesheet = qdarkstyle.load_stylesheet_pyqt5()
+    dark_stylesheet = qdarkstyle.load_stylesheet_pyside2()
     __app.setStyleSheet(dark_stylesheet)
 
 
 if __name__ == "__main__":
-    app = QApplication(sys.argv)
+    app = QApplication()
     style_sheet(app)
-    Form = QWidget()
+    Form = QWidget(None)
     dialog = MainDialog()
     dialog.setup_ui(Form)
     Form.show()
