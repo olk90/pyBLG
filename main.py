@@ -3,6 +3,7 @@ import sys
 from PySide2.QtCore import *
 from PySide2.QtGui import *
 from PySide2.QtWidgets import *
+from qdarkstyle import LightPalette
 
 
 class MainDialog(QWidget):
@@ -156,7 +157,7 @@ def translate(context, text):
 
 
 def style_sheet(__app):
-    dark_stylesheet = qdarkstyle.load_stylesheet_pyside2()
+    dark_stylesheet = qdarkstyle.load_stylesheet(palette=LightPalette())
     __app.setStyleSheet(dark_stylesheet)
 
 
