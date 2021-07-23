@@ -169,7 +169,7 @@
            <item>
             <widget class="QToolButton" name="inputPathButton">
              <property name="text">
-              <string/>
+              <string>...</string>
              </property>
             </widget>
            </item>
@@ -190,7 +190,11 @@
             <widget class="QLineEdit" name="outputPathEdit"/>
            </item>
            <item>
-            <widget class="QToolButton" name="outputPathButton"/>
+            <widget class="QToolButton" name="outputPathButton">
+             <property name="text">
+              <string>...</string>
+             </property>
+            </widget>
            </item>
           </layout>
          </widget>
@@ -210,7 +214,7 @@
      </property>
      <layout class="QVBoxLayout" name="tableFrameLayout">
       <item>
-       <widget class="QTableView" name="table">
+       <widget class="QTableWidget" name="table">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>1</horstretch>
@@ -223,17 +227,35 @@
         <property name="alternatingRowColors">
          <bool>true</bool>
         </property>
+        <column>
+         <property name="text">
+          <string>Name</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Barcode</string>
+         </property>
+        </column>
        </widget>
       </item>
       <item>
-       <widget class="QDialogButtonBox" name="buttonBox">
-        <property name="standardButtons">
-         <set>QDialogButtonBox::Ok|QDialogButtonBox::Reset</set>
-        </property>
-        <property name="centerButtons">
-         <bool>false</bool>
-        </property>
-       </widget>
+       <layout class="QHBoxLayout" name="buttonLayout">
+        <item>
+         <widget class="QPushButton" name="eraseButton">
+          <property name="text">
+           <string>Erase</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="generateButton">
+          <property name="text">
+           <string>Generate</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </item>
      </layout>
     </widget>
