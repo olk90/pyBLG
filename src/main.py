@@ -1,11 +1,13 @@
 import sys
 
+from PySide2 import QtCore
 from PySide2.QtWidgets import *
 
 from view.mainDialog import MainDialog
 
 if __name__ == "__main__":
-    app = QApplication()
+    QtCore.QCoreApplication.setAttribute(QtCore.Qt.AA_ShareOpenGLContexts)
+    app = QApplication(sys.argv)
     form = QWidget(None)
     MainDialog(form)
     form.show()

@@ -1,4 +1,3 @@
-from PySide2.QtGui import *
 from PySide2.QtWidgets import *
 
 from view.barcodeTableWidget import BarcodeTableWidget
@@ -14,15 +13,10 @@ class MainDialog(QMainWindow):
 
         form.setWindowTitle(translate("Title", "pyBLG"))
 
-        font = QFont()
-        font.setPointSize(14)
-        font.setBold(True)
-        font.setWeight(75)
-
         self.layout = QVBoxLayout(form)
-        self.settings = SettingsWidget(form=form, font=font)
-        self.io = IOWidget(form=form, font=font)
-        self.table = BarcodeTableWidget(form=form)
+        self.settings = SettingsWidget(form=form).widget
+        self.io = IOWidget(form=form).widget
+        self.table = BarcodeTableWidget(form=form).widget
 
         self.layout.addWidget(self.settings.frame)
         self.layout.addWidget(self.io.frame)
