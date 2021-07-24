@@ -1,6 +1,7 @@
 from PySide2.QtUiTools import QUiLoader
 from PySide2.QtWidgets import *
 
+from logic.barcodeProperties import barcodeProperties
 from view.uiHelpers import translate, load_ui_file
 
 
@@ -16,7 +17,21 @@ class SettingsWidget(QWidget):
         self.widget = loader.load(ui_file, dialog)
         ui_file.close()
 
+        self.setup_ui()
+
         self.translate_ui()
+
+    def setup_ui(self):
+        self.widget.barcodeCheckbox.stateChanged.connect(self.set_barcode_state)
+        self.widget.nameCheckbox.stateChanged.connect(self.set_name_state)
+
+    def set_barcode_state(self):
+        checked = self.widget.barcodeCheckbox.isChecked()
+        barcodeProperties.print_barcode = checked
+
+    def set_name_state(self):
+        checked = self.widget.nameCheckbox.isChecked()
+        barcodeProperties.print_name = checked
 
     def translate_ui(self):
         self.widget.settingsLabel.setText(translate("Form", "Settings"))

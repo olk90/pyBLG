@@ -68,6 +68,11 @@
           </item>
           <item>
            <property name="text">
+            <string>*.svg</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
             <string>*.odt</string>
            </property>
           </item>
@@ -94,7 +99,7 @@
           </item>
           <item>
            <property name="text">
-            <string>EAN 128</string>
+            <string>EAN 13</string>
            </property>
           </item>
          </widget>
