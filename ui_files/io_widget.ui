@@ -38,61 +38,50 @@
        </widget>
       </item>
       <item>
-       <layout class="QFormLayout" name="ioFormLayout">
-        <item row="0" column="0">
-         <widget class="QLabel" name="inputFileLabel">
-          <property name="text">
-           <string>Input File:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QFrame" name="inputFileFrame">
-          <layout class="QHBoxLayout" name="horizontalLayout_2">
-           <item>
-            <widget class="QLineEdit" name="inputPathEdit">
-             <property name="enabled">
-              <bool>true</bool>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QToolButton" name="inputPathButton">
-             <property name="accessibleName">
-              <string/>
-             </property>
-             <property name="text">
-              <string>...</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item row="1" column="0">
-         <widget class="QLabel" name="outputPathLabel">
-          <property name="text">
-           <string>Output Path:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1">
-         <widget class="QFrame" name="outputPathFrame">
-          <layout class="QHBoxLayout" name="horizontalLayout_3">
-           <item>
-            <widget class="QLineEdit" name="outputPathEdit"/>
-           </item>
-           <item>
-            <widget class="QToolButton" name="outputPathButton">
-             <property name="text">
-              <string>...</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-       </layout>
+       <widget class="QFrame" name="inputFileFrame">
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <item>
+          <widget class="QLineEdit" name="inputPathEdit">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
+           <property name="placeholderText">
+            <string>Input File</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QToolButton" name="inputPathButton">
+           <property name="accessibleName">
+            <string/>
+           </property>
+           <property name="text">
+            <string>...</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QFrame" name="outputPathFrame">
+        <layout class="QHBoxLayout" name="horizontalLayout_3">
+         <item>
+          <widget class="QLineEdit" name="outputPathEdit">
+           <property name="placeholderText">
+            <string>Output Path</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QToolButton" name="outputPathButton">
+           <property name="text">
+            <string>...</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
       </item>
      </layout>
     </widget>

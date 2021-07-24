@@ -31,8 +31,8 @@ class IOWidget(QWidget):
 
     def translate_ui(self):
         self.widget.ioLabel.setText(translate("Form", "Input/Output"))
-        self.widget.inputFileLabel.setText(translate("Form", "Input File"))
-        self.widget.outputPathLabel.setText(translate("Form", "Output Path"))
+        self.widget.inputPathEdit.setPlaceholderText(translate("Form", "Input File"))
+        self.widget.outputPathEdit.setPlaceholderText(translate("Form", "Output Path"))
 
     def select_input_file(self):
         fileName, _ = QFileDialog.getOpenFileName(self,
