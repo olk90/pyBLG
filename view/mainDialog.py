@@ -3,7 +3,7 @@ from PySide2.QtWidgets import *
 from view.barcodeTableWidget import BarcodeTableWidget
 from view.ioWidget import IOWidget
 from view.settingsWidget import SettingsWidget
-from view.translate import translate
+from view.uiHelpers import translate
 
 
 class MainDialog(QMainWindow):
@@ -16,7 +16,8 @@ class MainDialog(QMainWindow):
         self.layout = QVBoxLayout(form)
         self.settingsWidget = SettingsWidget(dialog=self).widget
         self.ioWidget = IOWidget(dialog=self).widget
-        self.tableWidget = BarcodeTableWidget(dialog=self).widget
+        self.barcodeTableWidget = BarcodeTableWidget(dialog=self)
+        self.tableWidget = self.barcodeTableWidget.widget
 
         self.layout.addWidget(self.settingsWidget.frame)
         self.layout.addWidget(self.ioWidget.frame)

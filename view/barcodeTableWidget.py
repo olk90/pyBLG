@@ -1,8 +1,7 @@
-import sys
-
-from PySide2.QtCore import *
 from PySide2.QtUiTools import QUiLoader
 from PySide2.QtWidgets import *
+
+from view.uiHelpers import load_ui_file
 
 
 class BarcodeTableWidget(QWidget):
@@ -11,10 +10,7 @@ class BarcodeTableWidget(QWidget):
         super().__init__(parent=dialog)
 
         ui_file_name = "ui_files/barcode_table_widget.ui"
-        ui_file = QFile(ui_file_name)
-        if not ui_file.open(QFile.ReadOnly):
-            print("Cannot open {}: {}".format(ui_file_name, ui_file.errorString()))
-            sys.exit(-1)
+        ui_file = load_ui_file(ui_file_name)
 
         loader = QUiLoader()
         self.widget = loader.load(ui_file, dialog)
@@ -27,19 +23,19 @@ class BarcodeTableWidget(QWidget):
         header.setSectionResizeMode(0, QHeaderView.Stretch)
         header.setSectionResizeMode(1, QHeaderView.Stretch)
 
-        # self.load_data()
+        self.widget.eraseButton.clicked.connect(self.clear_table)
+        self.update_button_states()
+
+    def clear_table(self):
+        table = self.get_table()
+        table.setRowCount(0)
+        self.update_button_states()
+
+    def update_button_states(self):
+        table = self.get_table()
+        enable = table.rowCount() > 0
+        self.widget.generateButton.setEnabled(enable)
+        self.widget.eraseButton.setEnabled(enable)
 
     def get_table(self):
         return self.widget.table
-
-    # TODO replace with proper implementation
-    # def load_data(self):
-    #     items = [{"name": "John", "barcode": "100034589012"},
-    #              {"name": "Mark", "barcode": "100034589034"},
-    #              {"name": "George", "barcode": "3240589767"}]
-    #     row = 0
-    #     self.widget.table.setRowCount(len(items))
-    #     for item in items:
-    #         self.widget.table.setItem(row, 0, QTableWidgetItem(item["name"]))
-    #         self.widget.table.setItem(row, 1, QTableWidgetItem(item["barcode"]))
-    #         row = row + 1

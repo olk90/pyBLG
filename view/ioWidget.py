@@ -1,11 +1,8 @@
-import sys
-
-from PySide2.QtCore import *
 from PySide2.QtUiTools import QUiLoader
 from PySide2.QtWidgets import *
 
 from logic.csvConverter import load_csv
-from view.translate import translate
+from view.uiHelpers import translate, load_ui_file
 
 
 class IOWidget(QWidget):
@@ -14,10 +11,7 @@ class IOWidget(QWidget):
         super().__init__(parent=dialog)
 
         ui_file_name = "ui_files/io_widget.ui"
-        ui_file = QFile(ui_file_name)
-        if not ui_file.open(QFile.ReadOnly):
-            print("Cannot open {}: {}".format(ui_file_name, ui_file.errorString()))
-            sys.exit(-1)
+        ui_file = load_ui_file(ui_file_name)
 
         loader = QUiLoader()
         self.widget = loader.load(ui_file, dialog)
@@ -45,7 +39,10 @@ class IOWidget(QWidget):
         self.widget.inputPathEdit.setText(file_name)
 
         table = self.dialog.tableWidget.table
-        load_csv(file_name, table)
+
+        if file_name:
+            load_csv(file_name, table)
+            self.dialog.barcodeTableWidget.update_button_states()
 
     def select_output_path(self):
         directory = QFileDialog.getExistingDirectory(self,

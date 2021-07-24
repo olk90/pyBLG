@@ -1,10 +1,7 @@
-import sys
-
-from PySide2.QtCore import *
 from PySide2.QtUiTools import QUiLoader
 from PySide2.QtWidgets import *
 
-from view.translate import translate
+from view.uiHelpers import translate, load_ui_file
 
 
 class SettingsWidget(QWidget):
@@ -13,10 +10,7 @@ class SettingsWidget(QWidget):
         super().__init__(parent=dialog)
 
         ui_file_name = "ui_files/settings_widget.ui"
-        ui_file = QFile(ui_file_name)
-        if not ui_file.open(QFile.ReadOnly):
-            print("Cannot open {}: {}".format(ui_file_name, ui_file.errorString()))
-            sys.exit(-1)
+        ui_file = load_ui_file(ui_file_name)
 
         loader = QUiLoader()
         self.widget = loader.load(ui_file, dialog)
