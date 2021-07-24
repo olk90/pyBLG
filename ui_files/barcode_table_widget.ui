@@ -57,6 +57,10 @@
            <string notr="true">QPushButton {
 	background-color: #ff5858;
 	border-radius: 10px;
+}
+QPushButton:hover {
+	background-color: #cc6b6b;
+	border-radius: 10px;
 }</string>
           </property>
           <property name="text">
@@ -69,6 +73,10 @@
           <property name="styleSheet">
            <string notr="true">QPushButton {
 	background-color: #599b4c;
+	border-radius: 10px;
+} 
+QPushButton:hover {
+	background-color: #5d8455;
 	border-radius: 10px;
 }</string>
           </property>
