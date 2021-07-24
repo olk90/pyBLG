@@ -53,6 +53,12 @@
        <layout class="QHBoxLayout" name="buttonLayout">
         <item>
          <widget class="QPushButton" name="eraseButton">
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+	background-color: #ff5858;
+	border-radius: 10px;
+}</string>
+          </property>
           <property name="text">
            <string>Erase</string>
           </property>
@@ -60,6 +66,12 @@
         </item>
         <item>
          <widget class="QPushButton" name="generateButton">
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+	background-color: #599b4c;
+	border-radius: 10px;
+}</string>
+          </property>
           <property name="text">
            <string>Generate</string>
           </property>
