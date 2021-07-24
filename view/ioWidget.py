@@ -4,13 +4,14 @@ from PySide2.QtCore import *
 from PySide2.QtUiTools import QUiLoader
 from PySide2.QtWidgets import *
 
+from logic.csvConverter import load_csv
 from view.translate import translate
 
 
 class IOWidget(QWidget):
 
-    def __init__(self, form):
-        super().__init__(parent=form)
+    def __init__(self, dialog):
+        super().__init__(parent=dialog)
 
         ui_file_name = "ui_files/io_widget.ui"
         ui_file = QFile(ui_file_name)
@@ -19,8 +20,10 @@ class IOWidget(QWidget):
             sys.exit(-1)
 
         loader = QUiLoader()
-        self.widget = loader.load(ui_file, form)
+        self.widget = loader.load(ui_file, dialog)
         ui_file.close()
+
+        self.dialog = dialog
 
         self.setup_ui()
         self.translate_ui()
@@ -35,11 +38,14 @@ class IOWidget(QWidget):
         self.widget.outputPathEdit.setPlaceholderText(translate("Form", "Output Path"))
 
     def select_input_file(self):
-        fileName, _ = QFileDialog.getOpenFileName(self,
-                                                  translate("Form", "Open CSV"),
-                                                  "",
-                                                  translate("Form", "Data files (*.csv)"))
-        self.widget.inputPathEdit.setText(fileName)
+        file_name, _ = QFileDialog.getOpenFileName(self,
+                                                   translate("Form", "Open CSV"),
+                                                   "",
+                                                   translate("Form", "Data files (*.csv)"))
+        self.widget.inputPathEdit.setText(file_name)
+
+        table = self.dialog.tableWidget.table
+        load_csv(file_name, table)
 
     def select_output_path(self):
         directory = QFileDialog.getExistingDirectory(self,

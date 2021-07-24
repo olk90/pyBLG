@@ -14,12 +14,12 @@ class MainDialog(QMainWindow):
         form.setWindowTitle(translate("Title", "pyBLG"))
 
         self.layout = QVBoxLayout(form)
-        self.settings = SettingsWidget(form=form).widget
-        self.io = IOWidget(form=form).widget
-        self.table = BarcodeTableWidget(form=form).widget
+        self.settingsWidget = SettingsWidget(dialog=self).widget
+        self.ioWidget = IOWidget(dialog=self).widget
+        self.tableWidget = BarcodeTableWidget(dialog=self).widget
 
-        self.layout.addWidget(self.settings.frame)
-        self.layout.addWidget(self.io.frame)
-        self.layout.addWidget(self.table.frame)
+        self.layout.addWidget(self.settingsWidget.frame)
+        self.layout.addWidget(self.ioWidget.frame)
+        self.layout.addWidget(self.tableWidget.frame)
 
         form.resize(451, 714)

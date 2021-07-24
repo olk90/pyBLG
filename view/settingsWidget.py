@@ -9,8 +9,8 @@ from view.translate import translate
 
 class SettingsWidget(QWidget):
 
-    def __init__(self, form):
-        super().__init__(parent=form)
+    def __init__(self, dialog):
+        super().__init__(parent=dialog)
 
         ui_file_name = "ui_files/settings_widget.ui"
         ui_file = QFile(ui_file_name)
@@ -19,7 +19,7 @@ class SettingsWidget(QWidget):
             sys.exit(-1)
 
         loader = QUiLoader()
-        self.widget = loader.load(ui_file, form)
+        self.widget = loader.load(ui_file, dialog)
         ui_file.close()
 
         self.translate_ui()

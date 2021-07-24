@@ -93,5 +93,22 @@ QPushButton:hover {
   </layout>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>eraseButton</sender>
+   <signal>clicked()</signal>
+   <receiver>table</receiver>
+   <slot>clearContents()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>157</x>
+     <y>276</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>135</x>
+     <y>179</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>
