@@ -37,7 +37,7 @@ class IOWidget(QWidget):
     def select_input_file(self):
         fileName, _ = QFileDialog.getOpenFileName(self,
                                                   translate("Form", "Open CSV"),
-                                                  ".",
+                                                  "",
                                                   translate("Form", "Data files (*.csv)"))
         self.widget.inputPathEdit.setText(fileName)
 
