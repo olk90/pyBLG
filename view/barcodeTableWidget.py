@@ -1,6 +1,7 @@
 from PySide2.QtUiTools import QUiLoader
 from PySide2.QtWidgets import *
 
+from logic.barcodes import barcodeProperties, print_barcode_img
 from view.uiHelpers import load_ui_file
 
 
@@ -23,6 +24,8 @@ class BarcodeTableWidget(QWidget):
         header.setSectionResizeMode(0, QHeaderView.Stretch)
         header.setSectionResizeMode(1, QHeaderView.Stretch)
 
+        self.widget.generateButton.clicked.connect(self.generate_labels)
+
         self.widget.eraseButton.clicked.connect(self.clear_table)
         self.update_button_states()
 
@@ -31,11 +34,21 @@ class BarcodeTableWidget(QWidget):
         table.setRowCount(0)
         self.update_button_states()
 
+    def generate_labels(self):
+        table = self.get_table()
+        rows = table.rowCount()
+        output_path = barcodeProperties.output_path
+        for row in range(0, rows):
+            name = table.item(row, 0).text()
+            barcode = table.item(row, 1).text()
+            print_barcode_img(output_path, name, "Code128", "png", barcode)
+
     def update_button_states(self):
         table = self.get_table()
-        enable = table.rowCount() > 0
-        self.widget.generateButton.setEnabled(enable)
-        self.widget.eraseButton.setEnabled(enable)
+        table_not_empty = table.rowCount() > 0
+        output_path_set = len(barcodeProperties.output_path) > 0
+        self.widget.generateButton.setEnabled(table_not_empty and output_path_set)
+        self.widget.eraseButton.setEnabled(table_not_empty)
 
     def get_table(self):
         return self.widget.table

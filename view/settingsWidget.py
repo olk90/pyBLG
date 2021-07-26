@@ -1,7 +1,7 @@
 from PySide2.QtUiTools import QUiLoader
 from PySide2.QtWidgets import *
 
-from logic.barcodeProperties import barcodeProperties
+from logic.barcodes import barcodeProperties
 from view.uiHelpers import translate, load_ui_file
 
 

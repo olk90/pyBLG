@@ -1,6 +1,7 @@
 from PySide2.QtUiTools import QUiLoader
 from PySide2.QtWidgets import *
 
+from logic.barcodes import barcodeProperties
 from logic.csvConverter import load_csv
 from view.uiHelpers import translate, load_ui_file
 
@@ -48,3 +49,5 @@ class IOWidget(QWidget):
         directory = QFileDialog.getExistingDirectory(self,
                                                      translate("Form", "Select output path"))
         self.widget.outputPathEdit.setText(directory)
+        barcodeProperties.output_path = directory
+        self.dialog.barcodeTableWidget.update_button_states()
