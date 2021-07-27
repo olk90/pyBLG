@@ -1,7 +1,7 @@
 from PySide2.QtUiTools import QUiLoader
 from PySide2.QtWidgets import *
 
-from logic.barcodes import barcodeProperties, print_barcode_img
+from logic.barcodes import barcodeProperties, create_label
 from view.uiHelpers import load_ui_file
 
 
@@ -37,11 +37,10 @@ class BarcodeTableWidget(QWidget):
     def generate_labels(self):
         table = self.get_table()
         rows = table.rowCount()
-        output_path = barcodeProperties.output_path
         for row in range(0, rows):
             name = table.item(row, 0).text()
             barcode = table.item(row, 1).text()
-            print_barcode_img(output_path, name, "Code128", "png", barcode)
+            create_label(name, barcode)
 
     def update_button_states(self):
         table = self.get_table()
