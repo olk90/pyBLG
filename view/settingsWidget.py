@@ -1,3 +1,4 @@
+from barcode import PROVIDED_BARCODES
 from PySide2.QtUiTools import QUiLoader
 from PySide2.QtWidgets import *
 
@@ -22,6 +23,10 @@ class SettingsWidget(QWidget):
         self.translate_ui()
 
     def setup_ui(self):
+
+        self.widget.outputTypeComboBox.addItems(PROVIDED_BARCODES)
+        self.widget.outputTypeComboBox.currentTextChanged.connect(self.set_output_type)
+
         self.widget.barcodeCheckbox.stateChanged.connect(self.set_barcode_state)
         self.widget.nameCheckbox.stateChanged.connect(self.set_name_state)
 
@@ -32,6 +37,10 @@ class SettingsWidget(QWidget):
     def set_name_state(self):
         checked = self.widget.nameCheckbox.isChecked()
         barcodeProperties.print_name = checked
+
+    def set_output_type(self):
+        selected_type = self.widget.outputTypeComboBox.currentText()
+        barcodeProperties.barcode_format = selected_type
 
     def translate_ui(self):
         self.widget.settingsLabel.setText(translate("Form", "Settings"))

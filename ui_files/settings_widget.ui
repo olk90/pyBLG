@@ -61,26 +61,6 @@
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
-          <item>
-           <property name="text">
-            <string>*.png</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>*.svg</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>*.odt</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>*.docx</string>
-           </property>
-          </item>
          </widget>
         </item>
         <item row="2" column="0">
@@ -91,18 +71,7 @@
          </widget>
         </item>
         <item row="2" column="1">
-         <widget class="QComboBox" name="formatComboBox">
-          <item>
-           <property name="text">
-            <string>Code 128</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>EAN 13</string>
-           </property>
-          </item>
-         </widget>
+         <widget class="QComboBox" name="formatComboBox"/>
         </item>
         <item row="0" column="1">
          <widget class="QFrame" name="layoutFrame">

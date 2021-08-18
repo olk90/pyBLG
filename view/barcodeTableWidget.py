@@ -20,9 +20,13 @@ class BarcodeTableWidget(QWidget):
         self.setup_ui()
 
     def setup_ui(self):
-        header = self.widget.table.horizontalHeader()
+        table = self.get_table()
+
+        header = table.horizontalHeader()
         header.setSectionResizeMode(0, QHeaderView.Stretch)
         header.setSectionResizeMode(1, QHeaderView.Stretch)
+
+        table.setSelectionBehavior(QTableView.SelectRows)
 
         self.widget.generateButton.clicked.connect(self.generate_labels)
 
@@ -37,10 +41,14 @@ class BarcodeTableWidget(QWidget):
     def generate_labels(self):
         table = self.get_table()
         rows = table.rowCount()
-        for row in range(0, rows):
-            name = table.item(row, 0).text()
-            barcode = table.item(row, 1).text()
-            create_label(name, barcode)
+        try:
+            for row in range(0, rows):
+                name = table.item(row, 0).text()
+                barcode = table.item(row, 1).text()
+                create_label(name, barcode)
+        except ValueError as ve:
+            error_dialog = QErrorMessage(parent=self.parent())
+            error_dialog.showMessage(str(ve))
 
     def update_button_states(self):
         table = self.get_table()
