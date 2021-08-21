@@ -19,8 +19,8 @@ class MainDialog(QMainWindow):
         self.barcodeTableWidget = BarcodeTableWidget(dialog=self)
         self.tableWidget = self.barcodeTableWidget.widget
 
-        self.layout.addWidget(self.settingsWidget.frame)
-        self.layout.addWidget(self.ioWidget.frame)
-        self.layout.addWidget(self.tableWidget.frame)
+        self.layout.addWidget(self.settingsWidget)
+        self.layout.addWidget(self.ioWidget)
+        self.layout.addWidget(self.tableWidget)
 
         form.resize(451, 714)
